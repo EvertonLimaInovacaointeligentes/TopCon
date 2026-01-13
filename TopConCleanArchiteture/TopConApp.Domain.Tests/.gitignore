@@ -1,0 +1,71 @@
+# =====================================================
+# GITIGNORE - TOPCONAPP.DOMAIN.TESTS
+# =====================================================
+# Testes da Camada de Domínio
+# =====================================================
+
+# Build results
+bin/
+obj/
+out/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build outputs
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+
+# Test results
+TestResults/
+[Tt]est[Rr]esult*/
+*.trx
+*.coverage
+*.coveragexml
+coverage/
+*.lcov
+
+# xUnit
+xunit.runner.json
+
+# NUnit
+TestResult.xml
+nunit-*.xml
+
+# MSTest
+*.vsmdi
+*.testrunconfig
+*.testsettings
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+!packages/build/
+
+# Test data
+TestData/
+test-output/
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+*.bak
+
+# IDE files
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db

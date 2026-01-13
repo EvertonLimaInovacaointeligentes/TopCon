@@ -1,0 +1,88 @@
+services:
+  # =====================================================
+  # BANCO DE DADOS POSTGRESQL
+  # =====================================================
+  db:
+    image: postgres:14-alpine
+    container_name: postgres_topcon
+    restart: always
+    environment:
+      POSTGRES_DB: prova_topcon
+      POSTGRES_USER: topcon
+      POSTGRES_PASSWORD: prova
+    ports:
+      - "5432:5432"
+    volumes:
+      # Mapeamento da pasta física do Windows para a pasta de dados do Postgres
+      - "D:/prova topcon/BD:/var/lib/postgresql/data"
+    networks:
+      - topcon-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U topcon -d prova_topcon"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # =====================================================
+  # API .NET 6 - BACKEND
+  # =====================================================
+  api:
+    build:
+      context: .
+      dockerfile: TopConApp.Api/Dockerfile
+    container_name: topcon_api
+    restart: always
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=prova_topcon;Username=topcon;Password=prova
+    ports:
+      - "5214:80"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - topcon-network
+    volumes:
+      - ./TopConApp.Api/logs:/app/logs
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # =====================================================
+  # FRONTEND REACT - TOPCONPRESENTATION
+  # =====================================================
+  frontend:
+    build:
+      context: ./topconpresentation
+      dockerfile: Dockerfile
+    container_name: topcon_frontend
+    restart: always
+    environment:
+      - REACT_APP_API_URL=http://localhost:5214/api
+      - NODE_ENV=production
+    ports:
+      - "3000:80"
+    depends_on:
+      - api
+    networks:
+      - topcon-network
+    volumes:
+      - ./topconpresentation/nginx.conf:/etc/nginx/nginx.conf:ro
+
+# =====================================================
+# NETWORKS
+# =====================================================
+networks:
+  topcon-network:
+    driver: bridge
+    name: topcon-network
+
+# =====================================================
+# VOLUMES
+# =====================================================
+volumes:
+  postgres_data:
+    driver: local

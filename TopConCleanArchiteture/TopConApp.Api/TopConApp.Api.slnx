@@ -1,0 +1,10 @@
+<Solution>
+  <Project Path="../TopConApp.Api.Tests/TopConApp.Api.Tests.csproj" />
+  <Project Path="../TopConApp.Application.Tests/TopConApp.Application.Tests.csproj" />
+  <Project Path="../TopConApp.Application/TopConApp.Application.csproj" Id="be4258a3-d0c2-4a86-bac0-47132d65603b" />
+  <Project Path="../TopConApp.Domain.Tests/TopConApp.Domain.Tests.csproj" />
+  <Project Path="../TopConApp.Domain/TopConApp.Domain.csproj" Id="46c6502a-6688-4bbd-bfa2-ba891a35fa2f" />
+  <Project Path="../TopConApp.Infrastructure.Tests/TopConApp.Infrastructure.Tests.csproj" />
+  <Project Path="../TopConApp.Infrastructure/TopConApp.Infrastructure.csproj" Id="7adab363-0651-4554-a519-9c7ab4dd8d0e" />
+  <Project Path="TopConApp.Api.csproj" />
+</Solution>

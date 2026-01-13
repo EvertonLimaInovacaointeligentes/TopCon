@@ -1,0 +1,84 @@
+# =====================================================
+# GITIGNORE - TOPCONAPP.API
+# =====================================================
+# Camada de Apresentação - API REST
+# =====================================================
+
+# Build results
+bin/
+obj/
+out/
+wwwroot/dist/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build outputs
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+
+# Test results
+TestResults/
+[Tt]est[Rr]esult*/
+*.trx
+*.coverage
+*.coveragexml
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+!packages/build/
+
+# ASP.NET Core
+appsettings.Local.json
+appsettings.Development.json
+appsettings.Production.json
+*.pfx
+*.p12
+
+# Publish profiles
+Properties/PublishProfiles/
+*.pubxml
+*.pubxml.user
+*.azurePubxml
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# SSL certificates
+*.pem
+*.key
+*.crt
+*.cer
+
+# Swagger generated files
+swagger.json
+swagger.yaml
+
+# Docker (se houver arquivos específicos da API)
+.dockerignore
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+
+# IDE files
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
